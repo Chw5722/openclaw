@@ -280,6 +280,8 @@ echo "==> Auth files: ${AUTH_FILES_CSV:-none}"
 DOCKER_RUN_ARGS=(docker run --rm -t \
   -u "$DOCKER_USER" \
   --entrypoint bash \
+  -e CI="${CI:-}" \
+  -e GITHUB_ACTIONS="${GITHUB_ACTIONS:-}" \
   -e COREPACK_ENABLE_DOWNLOAD_PROMPT=0 \
   -e HOME=/home/node \
   -e NPM_CONFIG_PREFIX="$DOCKER_CLI_TOOLS_CONTAINER_DIR" \
