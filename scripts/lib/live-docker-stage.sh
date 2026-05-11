@@ -59,6 +59,9 @@ openclaw_live_stage_node_modules() {
 
   mkdir -p "$target_dir"
   cp -aRs /app/node_modules/. "$target_dir"
+  # pnpm rewrites this file during script startup. The symlink-farmed copy points
+  # back into the root-owned build image and fails under the non-root live user.
+  rm -f "$target_dir/.pnpm-workspace-state-v1.json"
   rm -rf "$target_dir/.vite-temp"
   mkdir -p "$target_dir/.vite-temp"
 }
